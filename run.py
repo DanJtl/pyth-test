@@ -48,17 +48,17 @@ def player_creation():
     if player_stats == "a":
         Player.dmg = 40
         Player.health = 80
-        Player.luck = random.randint(2, 6)
+        Player.luck = random.randint(3, 8)
 
     elif player_stats == "b":
         Player.dmg = 20
         Player.health = 140
-        Player.luck = random.randint(2, 6)
+        Player.luck = random.randint(3, 8)
 
     elif player_stats == "c":
         Player.dmg = 20
         Player.health = 100
-        Player.luck = random.randint(4, 6)
+        Player.luck = random.randint(5, 8)
 
     print("\nThe guards turn to you, and you know it's time to pick a weapon...")
     print("Which one do you choose?")
@@ -91,8 +91,10 @@ def player_creation():
 
     return Player(Player.name, Player.dmg, Player.health, Player.luck)
 
+
 # Create an enemy and set enemy stats
 def enemy_creation(elite_enemy):
+    
     enemy_name_first = ("Angry", "Big", "Aggresive", "Furious", "Crazy", "Creepy", "Dangerous", "Evil", "Powerful", "Scary")
     enemy_name_last = ("Goblin", "Troll", "Undead", "Monster", "Orc", "Zombie", "Skeleton", "Cyclop", "Dragon", "Ghoul")
 
@@ -151,18 +153,13 @@ def player_attack():
     if attack_choice == "a":
         Player.dmg -= 10
         Player.luck += 2
-        Player.dmg += 10
-        Player.luck -= 2
-
+        
     elif attack_choice == "b":
         Player.dmg += 5
-        Player.dmg -= 5
-
+        
     elif attack_choice == "c":
         Player.dmg += 20
         Player.luck -= 2
-        Player.dmg -= 20
-        Player.luck += 2
 
     print(f"\nYou raise your weapon and attack the {Enemy.name}...")
     hit = random.randint(0, 10)
@@ -175,18 +172,20 @@ def player_attack():
 
     else:
         print("You fumble and miss!")
-"""
+
     if attack_choice == "a":
         Player.dmg += 10
         Player.luck -= 2
+        
 
     elif attack_choice == "b":
         Player.dmg -= 5
-
+        
     elif attack_choice == "c":
         Player.dmg -= 20
         Player.luck += 2
-"""
+        
+
 # Battle function
 def battle():
 
@@ -197,7 +196,7 @@ def battle():
         if Enemy.health <= 0:
             print(f"You killed the {Enemy.name}!")
             print(f"Everyone in the arena is shouting your name... {Player.name.upper()}!")
-            print(f"Your health is now at {Player.health}")
+            print(f"Your health is now {Player.health}")
         else:
             enemy_attack()
             print(f"\nYour Health is now {Player.health}.")
@@ -205,6 +204,7 @@ def battle():
             print("You fought your hardest...")
             print("...but it wasn't enough.")
         
+
 
 
 player_character = player_creation()
