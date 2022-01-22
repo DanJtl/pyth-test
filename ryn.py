@@ -39,7 +39,7 @@ def create_player():
     It also sets the player attributes and making sure they
     input correct data by using a while loop.
     """
-    player = Player("Test", 0, 0, 0,)
+    player = Player("Player", 0, 0, 0,)
     print("You are once again led by three guards towards the iron gate…")
     print("The iron gate opens slowly, and you feel…")
 
@@ -111,7 +111,7 @@ def create_enemy():
     """
     Create an enemy and set enemy stats
     """
-    enemy = Enemy("Test", 0, 0, 0,)
+    enemy = Enemy("Enemy", 0, 0, 0,)
     elite_enemy = Elite("Test", 0, 0, 0, 0)
     enemy_first = (
             "Angry", "Big", "Aggresive", "Furious", "Crazy",
@@ -126,7 +126,7 @@ def create_enemy():
 
     elite_enemy = random.randint(0, 10)
 
-    if elite_enemy >= 1:
+    if elite_enemy >= 7:
         elite_enemy = True
     else:
         elite_enemy = False
@@ -169,6 +169,11 @@ def enemy_attack():
                 player.health -= enemy.dmg
                 print(f"{enemy.dmg} in damage!")
                 return player.health
+        else:
+            print("It hits you and does...")
+            player.health -= enemy.dmg
+            print(f"{enemy.dmg} in damage!")
+            return player.health
 
     else:
         print(f"{enemy.name} fumbles and misses!")
@@ -178,7 +183,6 @@ def player_attack():
     """
     Attack function for player
     """
-
     print("\nYou look at the enemy and decides to do a...")
     attack = input("""
         a) Fast attack.
@@ -217,6 +221,13 @@ def player_attack():
         print("You fumble and miss!")
 
 
+def dead():
+    if enemy.health < 1:
+        return True
+    else:
+        return False
+
+
 def battle():
     """
     Battle function
@@ -228,16 +239,19 @@ def battle():
             print(f"You killed the {enemy.name}!\n")
             print("Everyone in the arena is shouting your name...")
             print(f"{player.name.upper()}!")
-            print(f"Your health is now {player.health}...")
+            print(f"Your health is now {player.health}...\n")
+            dead() is True
+            create_enemy()
+            battle()
         else:
             enemy_attack()
             print(f"\nYour Health is now {player.health}.")
         if player.health <= 0:
             print("You fought your hardest...")
             print("...but it wasn't enough.")
+    
 
 
-elite_enemy = None
 player = create_player()
 enemy = create_enemy()
 print("\nIn front of you, you can see your opponent...")
